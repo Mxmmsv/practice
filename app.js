@@ -1,19 +1,55 @@
 /*
-	Методом prompt получите ответ пользователя
-	на вопрос "Сколько будет 7 + или - 15?". Если ответ верен
-	выведите в консоле "Успех", если нет - "Вы робот!",
-	а если он введёт "Я не робот", то тоже "Успех".
+	Пользователь хочет приобрести игру в магазине
+	Он может это сделать отлько если:
+	- Eго баланс больше 1000 (balance) 
+	или число бонусов больше 100 (bonusBalance)
+	- Он не забанен (isBanned)
+	- Игра не кулена (isExist)
+	- Игра в продаже (isSelling)
+	Напишите условие для покупки и выведите в консоль
+	результат
 */
 
-let exam = prompt('Сколько будет 7 +- 15?')
-
-switch (true) {
-    case Number(exam) === 22:
-    case Number(exam) === -8:
-    case exam === 'Я не робот':
-        console.log('Успех!')
+let balance = prompt('Введите число на балансе')
+let bonusBalance = prompt('Введите число бонусов')
+let isBanned = prompt('Вы забанены?')
+switch (isBanned) {
+    case 'да':
+        isBanned = true;
+        break;
+    case 'нет':
+        isBanned = false;
         break;
     default:
-        console.log('Умрите, кожанные мешки!')
+        isBanned = false;
         break;
 }
+
+let isExist = prompt('Игра куплена?')
+switch (isExist) {
+    case 'да':
+        isExist = true;
+        break;
+    case 'нет':
+        isExist = false;
+        break;
+    default:
+        isExist = false;
+        break;
+}
+
+let isSelling = prompt('Игра продаётся?')
+switch (isSelling) {
+    case 'да':
+        isSelling = true;
+        break;
+    case 'нет':
+        isSelling = false;
+        break;
+    default:
+        isSelling = false;
+        break;
+}
+
+let capacity = (balance >= 1000 || bonusBalance >= 100) && !isBanned && !isExist && isSelling;
+console.log(`Вася хочет купить игру, и он ${capacity} сделать это!`)
