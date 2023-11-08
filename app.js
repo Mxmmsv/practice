@@ -53,12 +53,4 @@ switch (isSelling) {
 
 let capacity = (balance >= 1000 || bonusBalance >= 100) && !isBanned && !isExist && isSelling;
 
-switch (capacity) {
-    case true:
-        capacity = 'сможет'
-        break;
-    default:
-        capacity = 'не сможет'
-        break;
-}
-console.log(`Вася хочет купить игру, и он ${capacity} сделать это!`)
+console.log(`Вася хочет купить игру, и он ${capacity === true ? 'сможет' : 'не сможет'} сделать это!`)
