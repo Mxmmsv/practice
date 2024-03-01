@@ -12,30 +12,23 @@
 	и товара и возвращает true или false;
 */
 
-const MacBookCoastUsd = 2000;
+let user = Number(prompt('Сколько вам лет?'));
+let money = Number(prompt('Сколько у вас кэшика?'));
+let isJob = (prompt('У вас есть работа?')) === 'Да' ? true : false;
 
-function calculateLoan(age,job) {
-    switch (true) {
-        case age >= 24 && job:
-            return 500;
-        case age >= 24:
-            return 100;
-        default:
-            return 0;
-    }
+function credit(user, isJob) {
+	switch (true) {
+		case user >= 24 && isJob:
+			return 500;
+		case user >= 24:
+			return 100;
+		default:
+			return 0;
+	}
 }
 
-function canBuy(age,job,money) {
-    if (money >= MacBookCoastUsd) {
-        return true;
-    } else {
-        const loanPrice = money + calculateLoan(age,job)
-        if (loanPrice >= MacBookCoastUsd) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+function canBuy(money, credit = 0) {
+	return money + credit >= 2000;
 }
 
-console.log(canBuy(24,true,1800))
+console.log(`Вы ${canBuy(money, credit(user, IsJob)) ? 'можете' : 'не можете'} купить новенький MacBook.`);
