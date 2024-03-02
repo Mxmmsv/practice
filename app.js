@@ -1,60 +1,20 @@
 /*
-	Дан список задач
-	const tasks = ['Задача 1'];
-	Сделать функции:
-	- Добавление задачи в конец
-	- Удаление задачи по названию
-	- Перенос задачи в начало списка по названию 
-	Всегда меняем исходный массив
-
-    DRY
-    DO NOT REPEAT YOURSELF
+	Дан произвольный url - 
+	'https://purpleschool.ru/course/javascript'
+	Нужно сделать функцию, которая выводит в консоль:
+	- Протокол (https)
+	- Доменное имя (purpleschool.ru)
+	- Путь внутри сайта (/course/javascript)
 */
 
-let tasks = ['Задача 1'];
-let newTask = prompt('Введите название вашей задачи. Например, Задача 2');
-let removeTask = prompt('Введите название вашей задачи, которую необходимо удалить. Например, Задача 3');
-let moveTask = prompt('Введите название вашей задачи, которую необходимо перенести в начало. Например, Задача 4');
+let url = 'https://purpleschool.ru/course/javascript';
 
-
-function addTaskToEnd (tasks, newTask) {
-	tasks.push(newTask);
+function parser(url) {
+    let [protocol, _,domain, ...source] = url.split('/');
+    console.log(protocol, domain, ...source);
+    console.log(`Протокол: ${protocol.split(':')[0]}`);
+    console.log(`Доменное имя: ${domain}`);
+    console.log(`Путь внутри сайта: /${source.join('/')}`);
 }
 
-function removeTaskFromArray(tasks, removeTask) {
-    let index = tasks.indexOf(removeTask);
-    if (index !== -1) {
-        tasks.splice(index, 1);
-        console.log("Задача удалена успешно.");
-    } else {
-        console.log("Задача не найдена.");
-    }
-}
-
-function moveTaskToStart(tasks, moveTask) {
-    let index = tasks.indexOf(moveTask);
-    if (index !== -1) {
-        tasks.splice(index, 1);
-        tasks.unshift(moveTask);
-        console.log("Задача перемещена успешно.");
-    } else {
-        console.log("Задача не найдена.");
-    }
-}
-
-console.log("Исходный массив задач:", tasks);
-
-if (newTask !== null) {
-    addTaskToEnd(tasks, newTask);
-    console.log("Массив задач после добавления:", tasks);
-}
-
-if (removeTask !== null) {
-    removeTaskFromArray(tasks, removeTask);
-    console.log("Массив задач после удаления:", tasks);
-}
-
-if (moveTask !== null) {
-    moveTaskToStart(tasks, moveTask);
-    console.log("Массив задач после перемещения:", tasks);
-}
+parser(url);
